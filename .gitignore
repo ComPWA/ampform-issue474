@@ -1,0 +1,7 @@
+.ipynb_checkpoints/
+.jupyterlite.doit.db
+.venv/
+.virtual_documents/
+*_cache/
+*.zip
+lite/

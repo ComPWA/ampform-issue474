@@ -1,0 +1,94 @@
+[project]
+dependencies = [
+    "ampform",
+    "ipympl",
+    "matplotlib",
+    "tensorwaves[phsp]",
+    "zarr",
+]
+license = {file = "LICENSE"}
+name = "ampform-issue474"
+readme = "README.md"
+requires-python = ">=3.12"
+version = "0.0.1"
+
+[dependency-groups]
+dev = [
+    "ruff",
+    {include-group = "jupyter"},
+    {include-group = "lite"},
+    {include-group = "test"},
+]
+jupyter = [
+    "jupyterlab",
+    "jupyterlab-code-formatter",
+    "jupyterlab-git",
+    "jupyterlab-lsp",
+    "jupyterlab-quickopen",
+    "python-lsp-ruff",
+    "python-lsp-server[rope]",
+]
+lite = [
+    "jupyterlab",
+    "jupyterlab-lsp",
+    "jupyterlite-core",
+    "jupyterlite-pyodide-kernel",
+    "notebook",
+    "python-lsp-server[rope]",
+]
+test = ["nbmake"]
+
+[tool.pytest.ini_options]
+addopts = [
+    "--nbmake",
+    "--nbmake-timeout=0",
+]
+filterwarnings = [
+    "error",
+]
+norecursedirs = [
+    ".ipynb_checkpoints",
+    ".virtual_documents",
+    "lite",
+]
+
+[tool.ruff]
+preview = true
+show-fixes = true
+
+[tool.ruff.format]
+docstring-code-format = true
+line-ending = "lf"
+
+[tool.ruff.lint]
+ignore = [
+    "COM812",
+    "D203",
+    "D213",
+]
+select = ["ALL"]
+
+[tool.ruff.lint.flake8-builtins]
+builtins-ignorelist = ["display"]
+
+[tool.ruff.lint.isort]
+split-on-trailing-comma = false
+
+[tool.ruff.lint.per-file-ignores]
+"*.ipynb" = [
+    "B018",
+    "CPY001",
+    "D",
+    "E303",
+    "E402",
+    "PLW0603",
+    "S101",
+]
+
+[tool.tomlsort]
+all = false
+ignore_case = true
+in_place = true
+sort_first = ["project"]
+spaces_indent_inline_array = 4
+trailing_comma_inline_array = true

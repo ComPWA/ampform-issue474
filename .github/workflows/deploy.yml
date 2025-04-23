@@ -1,0 +1,55 @@
+name: Build and Deploy
+
+env:
+  FORCE_COLOR: "1"
+  UV_SYSTEM_PYTHON: "1"
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - name: Export phase space sample
+        run: >-
+          uv run \
+            --group test \
+            --no-dev \
+            pytest docs/psi-to-phi-k-k.ipynb
+      - name: Build the Jupyter Lite site
+        run: >-
+          uv run \
+            --group lite \
+            --no-dev \
+            jupyter lite build \
+              --contents docs/psi-to-phi-k-k-lite.ipynb \
+              --contents docs/phsp.zarr.zip \
+              --output-dir lite
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./lite
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    if: >-
+      github.event_name == 'push' &&
+      github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
