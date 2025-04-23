@@ -4,7 +4,7 @@ dependencies = [
     "ipympl",
     "matplotlib",
     "tensorwaves[phsp]",
-    "zarr",
+    "zarr~=2.0",
 ]
 license = {file = "LICENSE"}
 name = "ampform-issue474"
