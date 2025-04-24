@@ -18,6 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v5
+      - run: uv export --no-dev > docs/constraints.txt
       - name: Export phase space sample
         run: >-
           uv run \
@@ -30,6 +31,7 @@ jobs:
             --group lite \
             --no-dev \
             jupyter lite build \
+              --contents docs/constraints.txt \
               --contents docs/psi-to-phi-k-k-lite.ipynb \
               --contents docs/phsp.zarr.zip \
               --output-dir lite

@@ -14,10 +14,14 @@ To contribute to this repository, all you need to install is [`uv`](https://docs
     pytest docs/psi-to-phi-k-k.ipynb
   ```
   ```shell
+  uv export --no-dev > docs/constraints.txt
+  ```
+  ```shell
   uv run \
     --group lite \
     --no-dev \
     jupyter lite build \
+      --contents docs/constraints.txt \
       --contents docs/psi-to-phi-k-k-lite.ipynb \
       --contents docs/phsp.zarr.zip \
       --output-dir lite
