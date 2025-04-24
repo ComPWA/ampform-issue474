@@ -18,7 +18,6 @@ To contribute to this repository, all you need to install is [`uv`](https://docs
     --group lite \
     --no-dev \
     jupyter lite build \
-      --contents docs/constraints.txt \
       --contents docs/psi-to-phi-k-k-lite.ipynb \
       --contents docs/phsp.zarr.zip \
       --output-dir lite
