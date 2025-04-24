@@ -14,9 +14,6 @@ To contribute to this repository, all you need to install is [`uv`](https://docs
     pytest docs/psi-to-phi-k-k.ipynb
   ```
   ```shell
-  uv export --no-dev > docs/constraints.txt
-  ```
-  ```shell
   uv run \
     --group lite \
     --no-dev \

@@ -82,6 +82,8 @@ split-on-trailing-comma = false
     "E303",
     "E402",
     "PLW0603",
+    "PLW1514",
+    "PTH123",
     "S101",
 ]
 

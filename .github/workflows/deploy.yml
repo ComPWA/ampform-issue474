@@ -18,7 +18,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v5
-      - run: uv export --no-dev > docs/constraints.txt
       - name: Export phase space sample
         run: >-
           uv run \

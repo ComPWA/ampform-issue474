@@ -4,5 +4,4 @@
 .virtual_documents/
 *_cache/
 *.zip
-constraints.txt
 lite/
